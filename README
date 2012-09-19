@@ -1,0 +1,35 @@
+XKCD 1110 Click and Drag Stitcher
+
+This generates a single huge png with all the tiles placed appropriately. The no-tile background is grey, to highlight where the tiles are.
+
+All images copyright Randall Munroe, xkcd.com. Used under Creative Commons license.
+Code: Chris Mulligan, chmullig.com
+
+See also:
+ * http://xkcd.com/1110/
+ * http://xkcd-map.rent-a-geek.de/
+
+Two main files:
+ * retrieve.py, which downloads all the xkcd images (now stored in raw)
+ * stitch.py tilesize images...
+ 	* Must provide a tilesize (128, 256, 512, 768, 1024, 2048 all included). Each tile will be resized to this small and placed 
+ 	* Must provide a list of images as the remaining arguments. 
+ 	* Typically used like "python stitch.py 128 raw/*.png"
+
+* Requires Python Imaging Library, a relatively recent python, and a shitload of RAM if you want a large tile size. 
+
+1024x1024 tile and 2048x2048 tile (full size) composites generated on an EC2 high mem (m2.xlarge) instance this is due to memory requires - it required ~13GB of RAM. Just opening 1024x1024 in Preview.ap pegged the CPU for a while, and requires ~1GB of RAM. 
+
+1024x1024
+32768 82944 2717908992
+
+real	1m13.549s
+user	1m10.985s
+sys	0m2.551s
+
+2048x2048
+65536 165888 10871635968
+
+real	4m45.017s
+user	4m34.348s
+sys	0m10.647s
